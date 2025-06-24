@@ -9,16 +9,16 @@ if platform.system() == "Windows":  # necessary for correct display of fonts on 
     os.environ["PYTHONUTF8"] = "1"
 
 dpg.create_context()
+dpg.create_viewport(title="Test", width=600, height=600)
 
 
-def load_fonts():
-    font_base_path = Path("non-ASCII_символы/fonts/Monocraft/Monocraft.otf")
-    with dpg.font_registry():
-        # There should be an error when trying to register a font with non-ASCII
-        with dpg.font(str(font_base_path), 13) as default_font:
-            dpg.add_font_range_hint(dpg.mvFontRangeHint_Default)
+font_base_path = Path("non-ASCII_символы/fonts/Monocraft/Monocraft.otf")
+with dpg.font_registry():
+    # There should be an error when trying to register a font with non-ASCII
+    with dpg.font(str(font_base_path), 13) as default_font:
+        dpg.add_font_range_hint(dpg.mvFontRangeHint_Default)
 
-    dpg.bind_font(default_font)
+dpg.bind_font(default_font)
 
 
 dpg.setup_dearpygui()
